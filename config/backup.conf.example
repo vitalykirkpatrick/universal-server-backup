@@ -12,8 +12,8 @@ encryption_enabled = false
 notification_email = admin@example.com
 
 [backends]
-# Comma-separated list of enabled backends: s3, gdrive
-enabled = s3,gdrive
+# Comma-separated list of enabled backends: s3, gdrive, gcs
+enabled = s3,gcs
 
 # Default backend for operations
 default = s3
@@ -34,6 +34,16 @@ folder_name = ServerBackups
 
 # Shared Drive ID (leave empty for personal Drive)
 shared_drive_id = 
+
+[gcs]
+# Google Cloud Storage bucket name
+bucket_name = server-backups
+
+# Storage class: STANDARD, NEARLINE, COLDLINE, ARCHIVE
+storage_class = NEARLINE
+
+# Folder within bucket
+folder = backups 
 
 [retention]
 # Number of backups to keep

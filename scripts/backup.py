@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 try:
     from s3_backend import S3Backend
     from gdrive_backend import GDriveBackend
+    from gcs_backend import GCSBackend
     from utils import (
         load_config, get_disk_info, estimate_backup_size,
         send_notification, log_message, format_size
@@ -49,6 +50,8 @@ class SystemBackup:
             self.backends['s3'] = S3Backend(self.config)
         if 'gdrive' in self.config.get('backends', {}).get('enabled', '').split(','):
             self.backends['gdrive'] = GDriveBackend(self.config)
+        if 'gcs' in self.config.get('backends', {}).get('enabled', '').split(','):
+            self.backends['gcs'] = GCSBackend(self.config)
         
         self.image_path = None
         self.manifest = {}
@@ -306,7 +309,7 @@ Examples:
     
     parser.add_argument(
         '--backend',
-        choices=['all', 's3', 'gdrive'],
+        choices=['all', 's3', 'gdrive', 'gcs'],
         default='all',
         help='Backup backend to use'
     )

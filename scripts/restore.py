@@ -24,6 +24,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 try:
     from s3_backend import S3Backend
     from gdrive_backend import GDriveBackend
+    from gcs_backend import GCSBackend
     from utils import (
         load_config, log_message, format_size, verify_checksum
     )
@@ -61,6 +62,8 @@ class SystemRestore:
                 self.backends['s3'] = S3Backend(self.config)
             elif backend_name == 'gdrive':
                 self.backends['gdrive'] = GDriveBackend(self.config)
+            elif backend_name == 'gcs':
+                self.backends['gcs'] = GCSBackend(self.config)
             else:
                 print(f"Unknown backend: {backend_name}")
                 return None
@@ -328,7 +331,7 @@ Examples:
     
     parser.add_argument(
         '--backend',
-        choices=['s3', 'gdrive'],
+        choices=['s3', 'gdrive', 'gcs'],
         required=True,
         help='Backup backend to use'
     )
