@@ -46,7 +46,7 @@ if [ "$OS" = "ubuntu" ] || [ "$OS" = "debian" ]; then
         python3-pip \
         pigz \
         pv \
-        lsblk \
+        util-linux \
         curl \
         git
 elif [ "$OS" = "centos" ] || [ "$OS" = "rhel" ] || [ "$OS" = "fedora" ]; then
