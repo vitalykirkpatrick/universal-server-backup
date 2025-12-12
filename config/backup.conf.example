@@ -1,0 +1,54 @@
+[general]
+# Server name (used in backup filenames)
+backup_name = my-server
+
+# Compression level (1-9, higher = better compression but slower)
+compression_level = 6
+
+# Enable encryption (requires encryption key setup)
+encryption_enabled = false
+
+# Email for notifications (leave empty to disable)
+notification_email = admin@example.com
+
+[backends]
+# Comma-separated list of enabled backends: s3, gdrive
+enabled = s3,gdrive
+
+# Default backend for operations
+default = s3
+
+[s3]
+# S3 bucket name (will be created if doesn't exist)
+bucket_name = my-server-backups
+
+# AWS region
+region = us-east-1
+
+# Storage class: STANDARD, STANDARD_IA, GLACIER, DEEP_ARCHIVE
+storage_class = STANDARD_IA
+
+[gdrive]
+# Google Drive folder name
+folder_name = ServerBackups
+
+# Shared Drive ID (leave empty for personal Drive)
+shared_drive_id = 
+
+[retention]
+# Number of backups to keep
+keep_daily = 7
+keep_weekly = 4
+keep_monthly = 6
+keep_yearly = 2
+
+[schedule]
+# Enable automatic backups
+auto_backup = true
+
+# Cron schedule (minute hour day month weekday)
+# Examples:
+#   0 2 * * *     - Daily at 2 AM
+#   0 2 * * 0     - Weekly on Sunday at 2 AM
+#   0 2 1 * *     - Monthly on 1st at 2 AM
+cron_schedule = 0 2 * * 0
